@@ -248,7 +248,7 @@ async def health(request):
     return _json_response({"ok": True, "service": "misotts_api"})
 
 
-@routes.get("/api/misotts/status")
+@routes.get("/api/voxcpm/status")
 async def status(request):
     logger.info(f"[{request.method}] {request.path} from {request.remote}")
     cached_models = []
@@ -264,7 +264,7 @@ async def status(request):
     })
 
 
-@routes.post("/api/misotts/unload")
+@routes.post("/api/voxcpm/unload")
 async def unload(request):
     logger.info(f"[{request.method}] {request.path} from {request.remote}")
     global _API_MODEL
@@ -281,7 +281,7 @@ async def unload(request):
     return _json_response({"ok": True, "unloaded": count})
 
 
-@routes.post("/api/misotts/synthesize")
+@routes.post("/api/voxcpm/synthesize")
 async def synthesize(request):
     client_ip = request.remote or "-"
     req_id = uuid.uuid4().hex[:8]
@@ -427,9 +427,9 @@ async def index(request):
   <h1>MisoTTS API Server</h1>
   <pre>
 GET  /api/health
-GET  /api/misotts/status
-POST /api/misotts/unload
-POST /api/misotts/synthesize
+GET  /api/voxcpm/status
+POST /api/voxcpm/unload
+POST /api/voxcpm/synthesize
 
 Request (JSON):
 {

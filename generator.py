@@ -6,6 +6,8 @@ os.environ.setdefault("HF_HUB_ETAG_TIMEOUT", "60")
 os.environ.setdefault("HF_HUB_DOWNLOAD_TIMEOUT", "60")
 
 import torch
+import torch._dynamo
+torch._dynamo.config.suppress_errors = True
 import torchaudio
 from huggingface_hub import hf_hub_download
 from models import MISO_TTS_8B_CONFIG, Model, ModelArgs

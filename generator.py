@@ -59,6 +59,7 @@ class Generator:
         mimi_weight = hf_hub_download(loaders.DEFAULT_REPO, loaders.MIMI_NAME)
         mimi = loaders.get_mimi(mimi_weight, device=device)
         mimi.set_num_codebooks(self._model.config.audio_num_codebooks)
+        mimi.to(dtype=torch.float32)
         self._audio_tokenizer = mimi
 
         self._watermarker = load_watermarker(device=device)
